@@ -4,7 +4,7 @@ import { ArrowRight } from "lucide-react";
 /* Section wrapper + heading rule. Mirrors the Harvard Film Archive
    pattern: an uppercase bold label sitting on a hairline, with an
    optional "view all" pushed to the right. */
-export function SectionHeading({ title, ja, to, action = "View All" }) {
+export function SectionHeading({ title, ja, to, action = "一覧を見る" }) {
   return (
     <div className="rule mb-8 flex items-end justify-between gap-6 pt-5">
       <div>

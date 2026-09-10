@@ -112,7 +112,7 @@ function Nonfiction() {
                   {t.price}
                 </dd>
                 {t.soldOut && (
-                  <span className="eyebrow text-nf-gold">Sold Out</span>
+                  <span className="eyebrow text-nf-gold">完売</span>
                 )}
               </div>
             ))}

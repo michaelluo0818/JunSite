@@ -62,9 +62,9 @@ export const NONFICTION = {
   accessUrl: "https://www.loft-prj.co.jp/schedule/heaven/access",
   ticketUrl: "https://junsapporo.thebase.in/items/132503294",
   tickets: [
-    { label: "Ticket", price: "¥5,000 (+1D)" },
-    { label: "VIP Ticket", price: "¥10,000", soldOut: true },
-    { label: "Streaming", price: "¥4,000" },
+    { label: "チケット", price: "¥5,000 (+1D)" },
+    { label: "VIPチケット", price: "¥10,000", soldOut: true },
+    { label: "配信チケット", price: "¥4,000" },
   ],
   to: "/nonfiction",
 };
@@ -74,7 +74,7 @@ export const NONFICTION = {
    --------------------------------------------------------------- */
 export const ROOMLIVE = {
   title: "ROOMLIVE",
-  schedule: "毎月 第3・第4日曜 20:00〜",
+  schedule: "",
   channel: "https://www.youtube.com/@JunSapporo",
   series: "日本全国ストリートの旅",
   episodes: [

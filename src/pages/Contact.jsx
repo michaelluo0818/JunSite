@@ -28,7 +28,7 @@ export default function Contact() {
           </p>
 
           <div className="mt-10 border border-ink/15 bg-paper-2 p-7 sm:p-9">
-            <p className="eyebrow text-ink-3">Email</p>
+            <p className="eyebrow text-ink-3">メールアドレス</p>
             <p className="mt-3 text-lg break-all sm:text-2xl">
               <a
                 href={`mailto:${CONTACT_EMAIL}`}

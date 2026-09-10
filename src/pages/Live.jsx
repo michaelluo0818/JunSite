@@ -19,7 +19,7 @@ export default function Live() {
           <section key={g.month} className="mb-14 last:mb-0">
             <h2 className="rule flex items-baseline gap-4 pt-5 pb-6">
               <span className="display text-2xl text-accent sm:text-3xl">{g.month}</span>
-              <span className="eyebrow text-ink-3">{g.shows.length} shows</span>
+              <span className="eyebrow text-ink-3">{g.shows.length}公演</span>
             </h2>
             <div className="divide-y divide-ink/10 border-b border-ink/10">
               {g.shows.map((item) => (

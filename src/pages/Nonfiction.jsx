@@ -43,7 +43,7 @@ export default function Nonfiction() {
           </div>
 
           <div>
-            <p className="eyebrow text-nf-grey">Ticket</p>
+            <p className="eyebrow text-nf-grey">チケット</p>
             <dl className="mt-5 space-y-3">
               {NONFICTION.tickets.map((t) => (
                 <div
@@ -55,7 +55,7 @@ export default function Nonfiction() {
                     <span className={t.soldOut ? "text-nf-grey line-through" : "text-nf-white"}>
                       {t.price}
                     </span>
-                    {t.soldOut && <span className="eyebrow text-nf-gold">Sold Out</span>}
+                    {t.soldOut && <span className="eyebrow text-nf-gold">完売</span>}
                   </dd>
                 </div>
               ))}
