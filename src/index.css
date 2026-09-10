@@ -1,0 +1,87 @@
+@import "tailwindcss";
+
+/* ---------------------------------------------------------------
+   Palette + type scale.
+   Colours are lifted from harvardfilmarchive.org (warm paper /
+   near-black ink). Their display face is Brandon Grotesque, which is
+   a licensed Typekit font — Jost is the closest freely-licensed
+   geometric substitute. Swap the stack here if a licence is bought.
+   --------------------------------------------------------------- */
+@theme {
+  --color-paper: #ebeae9;
+  --color-paper-2: #e3e1df;
+  --color-ink: #232323;
+  --color-ink-2: #57534e;
+  --color-ink-3: #8a8681;
+  --color-accent: #0e5f6e;
+  --color-accent-2: #14808f;
+
+  /* nonfiction tour palette — sampled from the 2026.10.2 poster:
+     pure black ground, brass gold lettering, the yellow poppy, and
+     the warm off-white of the dress. */
+  --color-nf-black: #050505;
+  --color-nf-ink: #0d0d0c;
+  --color-nf-gold: #c7b94e;
+  --color-nf-gold-2: #dbc65d;
+  --color-nf-white: #e8e7e3;
+  --color-nf-grey: #858480;
+
+  --font-display: "Jost", "Noto Sans JP", system-ui, sans-serif;
+  --font-jp: "Noto Sans JP", "Jost", system-ui, sans-serif;
+  --font-script: "Italianno", "Jost", cursive;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: var(--color-paper);
+  color: var(--color-ink);
+  font-family: var(--font-jp);
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Latin display type: uppercase, bold, lightly tracked — the HFA
+   signature. Japanese never gets letter-spacing this tight. */
+@utility eyebrow {
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-size: 0.6875rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+
+@utility display {
+  font-family: var(--font-display);
+  font-weight: 700;
+  letter-spacing: 0.01em;
+  text-transform: uppercase;
+}
+
+/* Same weight and tracking as .display, but keeps the source casing —
+   the tour is styled "nonfiction", never "NONFICTION". */
+@utility display-lower {
+  font-family: var(--font-display);
+  font-weight: 700;
+  letter-spacing: 0.01em;
+  text-transform: none;
+}
+
+/* Nav item: display face + weight, casing left to the caller so the
+   tour name can stay lowercase. */
+@utility menu-item {
+  font-family: var(--font-display);
+  font-weight: 500;
+}
+
+@utility script {
+  font-family: var(--font-script);
+  font-weight: 400;
+  text-transform: none;
+  letter-spacing: 0.01em;
+}
+
+@utility rule {
+  border-top: 1px solid color-mix(in srgb, var(--color-ink) 18%, transparent);
+}
