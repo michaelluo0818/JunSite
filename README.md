@@ -1,4 +1,4 @@
-# JUN Official Site
+# JUN Site
 
 静的サイトです。HTML・CSS・JavaScript・画像だけに変換されるため、サーバーもデータベースも必要ありません。
 
