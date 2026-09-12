@@ -24,6 +24,14 @@ export function YouTubeIcon({ className = "size-4" }) {
   );
 }
 
+export function TikTokIcon({ className = "size-4" }) {
+  return (
+    <svg {...base} className={className}>
+      <path d="M16.6 5.82A4.28 4.28 0 0 1 15.54 3h-3.09v12.4a2.59 2.59 0 0 1-2.59 2.5 2.6 2.6 0 0 1-2.6-2.6c0-1.72 1.66-3.01 3.37-2.48V9.66c-3.45-.46-6.47 2.22-6.47 5.64 0 3.33 2.76 5.7 5.69 5.7 3.14 0 5.69-2.55 5.69-5.7V9.01a7.35 7.35 0 0 0 4.3 1.38V7.3c-1.29 0-2.48-.53-3.24-1.48Z" />
+    </svg>
+  );
+}
+
 export function InstagramIcon({ className = "size-4" }) {
   return (
     <svg {...base} className={className}>
@@ -35,5 +43,6 @@ export function InstagramIcon({ className = "size-4" }) {
 export const SOCIAL_ICONS = {
   X: XIcon,
   YouTube: YouTubeIcon,
+  TikTok: TikTokIcon,
   Instagram: InstagramIcon,
 };

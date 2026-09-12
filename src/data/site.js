@@ -28,6 +28,7 @@ export const NAV = [
 export const SOCIALS = [
   { name: "X", href: "https://x.com/Jun_006" },
   { name: "YouTube", href: "https://www.youtube.com/@JunSapporo" },
+  { name: "TikTok", href: "https://www.tiktok.com/@jun_0060" },
   { name: "Instagram", href: "https://www.instagram.com/jun_006/" },
 ];
 
