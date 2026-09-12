@@ -13,6 +13,16 @@
  *  2. SHARE CARDS. LINE, X and Slack fetch the raw HTML and read the head.
  *     They do not execute React, so a title set at runtime is invisible to
  *     them. The tags have to be baked into each file at build time.
+ *
+ *  3. DISCOVERY. Googlebot's crawl phase only follows <a href> found in the
+ *     raw HTML, and this app's navigation is drawn by React — so before
+ *     rendering there are literally zero links to follow. sitemap.xml hands
+ *     Google every URL up front, with no rendering required.
+ *
+ * URLs carry a trailing slash throughout, because that is what the host
+ * actually serves: Cloudflare Pages (and Apache) 307/301 from /live to
+ * /live/. Matching it keeps canonical, og:url and the sitemap on the real
+ * URL instead of one that redirects.
  */
 
 import { copyFileSync, mkdirSync, existsSync, readFileSync, writeFileSync } from "node:fs";
@@ -52,6 +62,9 @@ const ROUTES = {
     title: "ライブ情報エディター | JUN",
     description: "ライブ情報の編集ツールです。",
     noindex: true,
+    // Kept out of the sitemap: listing a noindex URL contradicts itself
+    // and Search Console reports it as an error.
+    sitemap: false,
   },
 };
 
@@ -70,7 +83,7 @@ function setMeta(html, attr, key, value) {
 }
 
 for (const [route, meta] of Object.entries(ROUTES)) {
-  const url = `${SITE}/${route}`;
+  const url = `${SITE}/${route}/`;
   let html = base;
 
   html = html.replace(/<title>[^<]*<\/title>/, `<title>${meta.title}</title>`);
@@ -105,5 +118,31 @@ for (const [route, meta] of Object.entries(ROUTES)) {
 // The homepage keeps index.html exactly as built.
 copyFileSync(source, join(DIST, "index.html"));
 
+/* ---------------------------------------------------------------
+   sitemap.xml
+   Only <loc> and <lastmod>: Google ignores <changefreq> and
+   <priority> entirely, so emitting them is noise.
+   --------------------------------------------------------------- */
+const lastmod = new Date().toISOString().slice(0, 10);
+const indexable = [
+  `${SITE}/`,
+  ...Object.entries(ROUTES)
+    .filter(([, meta]) => meta.sitemap !== false && !meta.noindex)
+    .map(([route]) => `${SITE}/${route}/`),
+];
+
+const sitemap = `<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+${indexable
+  .map((loc) => `  <url>
+    <loc>${loc}</loc>
+    <lastmod>${lastmod}</lastmod>
+  </url>`)
+  .join("\n")}
+</urlset>
+`;
+writeFileSync(join(DIST, "sitemap.xml"), sitemap, "utf8");
+
 const names = Object.keys(ROUTES);
 console.log(`✓ wrote index.html for ${names.length} routes: ${names.join(", ")}`);
+console.log(`✓ wrote sitemap.xml with ${indexable.length} URLs`);

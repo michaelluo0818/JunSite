@@ -1,2 +1,4 @@
 User-agent: *
 Disallow: /editor
+
+Sitemap: https://jun006.com/sitemap.xml
