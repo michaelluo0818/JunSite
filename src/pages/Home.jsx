@@ -17,7 +17,7 @@ function Hero() {
     <section className="relative isolate overflow-hidden">
       <div
         aria-hidden
-        className="absolute inset-0 -z-20 bg-[center_22%] bg-cover"
+        className="hero-photo absolute inset-0 -z-20 bg-[center_22%] bg-cover"
         style={{ backgroundImage: "url('/hero.jpg')" }}
       />
       {/* The photo sits around 175/255 luminance, so light type would
@@ -26,13 +26,13 @@ function Hero() {
           face, top right, untouched. */}
       <div
         aria-hidden
-        className="absolute inset-0 -z-10 bg-[linear-gradient(to_top,rgba(255,246,219,0.96)_0%,rgba(255,246,219,0.86)_36%,rgba(255,246,219,0.4)_60%,rgba(255,246,219,0)_86%)] md:bg-[linear-gradient(to_top_right,rgba(255,246,219,0.94)_0%,rgba(255,246,219,0.78)_26%,rgba(255,246,219,0.34)_50%,rgba(255,246,219,0)_74%)]"
+        className="hero-veil absolute inset-0 -z-10 bg-[linear-gradient(to_top,rgba(255,246,219,0.96)_0%,rgba(255,246,219,0.86)_36%,rgba(255,246,219,0.4)_60%,rgba(255,246,219,0)_86%)] md:bg-[linear-gradient(to_top_right,rgba(255,246,219,0.94)_0%,rgba(255,246,219,0.78)_26%,rgba(255,246,219,0.34)_50%,rgba(255,246,219,0)_74%)]"
       />
       <div className="mx-auto flex min-h-[78vh] max-w-6xl flex-col justify-end px-5 pt-24 pb-14 text-ink sm:min-h-[84vh] sm:pb-20">
-        <h1 className="display text-[22vw] leading-[0.82] tracking-[0.02em] sm:text-[16vw] lg:text-[13rem]">
+        <h1 className="hero-wordmark display text-[22vw] leading-[0.82] tracking-[0.02em] sm:text-[16vw] lg:text-[13rem]">
           JUN
         </h1>
-        <div className="mt-8 border-t border-ink/25 pt-8">
+        <div className="hero-actions mt-8 border-t border-ink/25 pt-8">
           <div className="flex flex-wrap items-center gap-3">
             <Link
               to={NONFICTION.to}
