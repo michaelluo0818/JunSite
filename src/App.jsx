@@ -9,6 +9,7 @@ import Nonfiction from "./pages/Nonfiction";
 import About from "./pages/About";
 import Contact from "./pages/Contact";
 import Editor from "./pages/Editor";
+import Tenkyu from "./pages/Tenkyu";
 import Placeholder from "./pages/Placeholder";
 
 /* Multi-page site: start every route at the top. */
@@ -20,9 +21,11 @@ function ScrollToTop() {
   return null;
 }
 
-/* The editor is a tool, not a page of the site — it gets no navigation,
-   no footer, and asks search engines to stay away. */
-function EditorRoute() {
+/* Asks search engines to stay away for as long as this route is on
+   screen. scripts/build-routes.mjs writes the same tag into the static
+   file, which is the copy a crawler actually reads; this one covers the
+   case where the route is reached by clicking through the app. */
+function useNoindex() {
   useEffect(() => {
     const meta = document.createElement("meta");
     meta.name = "robots";
@@ -30,7 +33,21 @@ function EditorRoute() {
     document.head.appendChild(meta);
     return () => meta.remove();
   }, []);
+}
+
+/* The editor is a tool, not a page of the site — it gets no navigation
+   and no footer. */
+function EditorRoute() {
+  useNoindex();
   return <Editor />;
+}
+
+/* てんきゅーつあー is a normal page of the site, chrome and all. It is
+   simply unlisted for now: no NAV entry, no sitemap, noindex. Link it
+   from NAV in src/data/site.js when the tour is ready to announce. */
+function TenkyuRoute() {
+  useNoindex();
+  return <Tenkyu />;
 }
 
 function Site() {
@@ -43,6 +60,7 @@ function Site() {
           <Route path="/live" element={<Live />} />
           <Route path="/discography" element={<Discography />} />
           <Route path="/nonfiction" element={<Nonfiction />} />
+          <Route path="/tenkyu" element={<TenkyuRoute />} />
           <Route path="/about" element={<About />} />
           <Route path="/contact" element={<Contact />} />
           <Route path="*" element={<Placeholder title="Not Found" ja="404" />} />

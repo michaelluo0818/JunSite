@@ -26,9 +26,56 @@
   --color-nf-white: #e8e7e3;
   --color-nf-grey: #858480;
 
+  /* てんきゅーつあー2026 palette — sampled from the tour poster.
+     The poster is a cartoon drawing on warm paper: cream ground, soft
+     brown ink, and four hand-coloured hearts. Each city carries its own
+     heading colour on the poster, and the page keeps that coding.
+
+     Every city has two values. `-bright` is the poster colour, used for
+     bands and the chip fill, where it carries no small text. The plain
+     token is the same hue pushed down until 11px type on the matching
+     `-soft` tint clears 4.5:1 — poster yellow at that size is simply
+     unreadable, and the four cities have to stay equally legible or the
+     colour coding starts meaning "this one is harder to read". */
+  --color-tk-cream: #fffaf1;
+  --color-tk-cream-2: #fcf1e1;
+  --color-tk-ink: #332d27;
+  --color-tk-ink-2: #5c5248;
+  --color-tk-ink-3: #786c5f;
+  --color-tk-line: #e6d8c5;
+
+  /* The drawing itself: hearts, stars, hair, skin. */
+  --color-tk-heart: #e96b6f;
+  --color-tk-pink: #ee929d;
+  --color-tk-star: #f5d358;
+  --color-tk-orange: #eb9b3c;
+  --color-tk-violet: #b07fc0;
+
+  --color-tk-osaka: #7a6408;
+  --color-tk-osaka-bright: #e3cf4a;
+  --color-tk-osaka-soft: #fbf4d6;
+
+  --color-tk-fukuoka: #b8332d;
+  --color-tk-fukuoka-bright: #d6453f;
+  --color-tk-fukuoka-soft: #fce6e3;
+
+  --color-tk-sapporo: #30548c;
+  --color-tk-sapporo-bright: #3963a5;
+  --color-tk-sapporo-soft: #e3ebf7;
+
+  --color-tk-tokyo: #9c5c18;
+  --color-tk-tokyo-bright: #e6a65e;
+  --color-tk-tokyo-soft: #fbeedb;
+
   --font-display: "Jost", "Noto Sans JP", system-ui, sans-serif;
   --font-jp: "Noto Sans JP", "Jost", system-ui, sans-serif;
   --font-script: "Italianno", "Jost", cursive;
+
+  /* Only the tour page uses these: a marker hand for the tour name, a
+     rounded gothic for everything around it. Both are the closest free
+     matches to the poster's hand lettering. */
+  --font-hand: "Yusei Magic", "Zen Maru Gothic", "Noto Sans JP", cursive;
+  --font-round: "Zen Maru Gothic", "Noto Sans JP", system-ui, sans-serif;
 }
 
 html {
@@ -136,6 +183,79 @@ body {
   .hero-veil,
   .hero-wordmark,
   .hero-actions {
+    animation: none;
+  }
+}
+
+/* ---------------------------------------------------------------
+   てんきゅーつあー — type and decoration.
+   --------------------------------------------------------------- */
+
+@utility hand {
+  font-family: var(--font-hand);
+  font-weight: 400;
+  letter-spacing: 0.02em;
+  text-transform: none;
+}
+
+@utility round {
+  font-family: var(--font-round);
+  text-transform: none;
+}
+
+/* Latin label in the rounded face, so the tour page never falls back
+   to the site's hard-edged Jost for a caption. */
+@utility eyebrow-round {
+  font-family: var(--font-round);
+  font-weight: 700;
+  font-size: 0.6875rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+
+/* Each show card sits on cream with a soft double edge: a light outer
+   ring plus its city colour, which is passed in as --tk-edge. Drawn
+   with shadows rather than borders so the corner radius stays perfectly
+   round at every size. */
+@utility card-tk {
+  box-shadow:
+    0 0 0 1px var(--color-tk-line),
+    0 10px 30px -18px rgb(51 45 39 / 0.45);
+}
+
+/* A drift of about 1.2rem, with a sway and a slight swell on the way
+   up. The tilt has to be composed inside the keyframe rather than set
+   as a separate rotate on the element: an animation on `transform`
+   replaces the whole property, so a static rotation would be wiped out
+   the moment this starts. */
+@keyframes tk-float {
+  from {
+    transform: translateY(0.35rem) rotate(var(--tk-tilt, 0deg)) scale(0.97);
+  }
+  to {
+    transform: translateY(-0.85rem) rotate(calc(var(--tk-tilt, 0deg) + 7deg)) scale(1.04);
+  }
+}
+
+/* The scattered hearts and stars breathe, the way the drawing implies
+   they would. Purely decorative — every element carrying it is
+   aria-hidden. */
+/* `backwards` is what stops the load stutter. Each doodle waits out its
+   own delay before the animation starts, and without a fill mode it
+   spends that wait with no transform at all — then snaps into the first
+   keyframe, tilt and all. Since the tilts run to 22 degrees, that snap
+   is plainly visible, and the staggered delays make the whole group pop
+   in one after another. `backwards` applies the opening frame during the
+   delay instead, so nothing moves until it is meant to.
+
+   The duration here is only a fallback — each doodle overrides it
+   inline so the group never falls into step. */
+@utility doodle {
+  animation: tk-float 3.2s ease-in-out infinite alternate backwards;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .doodle {
     animation: none;
   }
 }

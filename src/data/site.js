@@ -71,6 +71,126 @@ export const NONFICTION = {
 };
 
 /* ---------------------------------------------------------------
+   てんきゅーつあー2026 — the thank-you tour, four dates Nov–Dec 2026.
+
+   Everything below is transcribed from the tour poster
+   (public/tenkyu.jpg), including each city's own colour: the poster
+   gives Osaka a yellow heading, Fukuoka red, Sapporo blue and Tokyo
+   orange, and the page keeps that coding so the four dates never
+   blur together.
+
+   `accent` is the poster colour itself, used for headings, bands and
+   chips. `ink` is the same hue darkened until small text on cream is
+   comfortably readable — the raw poster yellow is not.
+
+   `venue` is the hall as printed; `mapQuery` is what gets handed to
+   Google Maps, which is not the same string. It carries the city so a
+   one-word bar name lands in the right prefecture, and it spells the
+   Fukuoka venue "cafe" rather than "café" because the accent is part
+   of the printed logo, not of how anyone searches for the place.
+
+   `url` hangs off each ticket rather than each show: the two types go
+   on sale as two separate shop items, so there are eight links, not
+   four. All eight point at the shop's front page for now because the
+   individual items do not exist yet — replace them one at a time as
+   each goes on sale, and nothing else on the page has to change.
+   --------------------------------------------------------------- */
+export const TENKYU = {
+  title: "てんきゅーつあー2026",
+  eyebrow: "Live Tour",
+  tagline: "両手いっぱいのてんきゅーをキミに",
+  year: "2026",
+  poster: "/tenkyu.jpg",
+  to: "/tenkyu",
+
+  shows: [
+    {
+      key: "osaka",
+      no: "01",
+      date: "11.14",
+      day: "土",
+      city: "大阪",
+      cityEn: "Osaka",
+      venue: "Barねじ",
+      mapQuery: "Barねじ 大阪",
+      venueNote: "",
+      open: "19:00",
+      start: "19:30",
+      tickets: [
+        { label: "入場チケット", price: "¥4,500", suffix: "+1D", url: SHOP_URL },
+        { label: "応援付きチケット", price: "¥6,000", suffix: "+1D", support: true, url: SHOP_URL },
+      ],
+      note: "Live後プチ打ち上げ有",
+    },
+    {
+      key: "fukuoka",
+      no: "02",
+      date: "11.28",
+      day: "土",
+      city: "福岡",
+      cityEn: "Fukuoka",
+      venue: "アクアリウム",
+      mapQuery: "Live cafe&bar アクアリウム 福岡",
+      venueNote: "Live café&bar",
+      open: "13:30",
+      start: "14:00",
+      tickets: [
+        { label: "入場チケット", price: "¥4,500", suffix: "+1D", url: SHOP_URL },
+        { label: "応援付きチケット", price: "¥6,000", suffix: "+1D", support: true, url: SHOP_URL },
+      ],
+      note: "夜オフ会予定",
+    },
+    {
+      key: "sapporo",
+      no: "03",
+      date: "12.5",
+      day: "土",
+      city: "札幌",
+      cityEn: "Sapporo",
+      venue: "Cafe UNINGLE",
+      mapQuery: "Cafe UNINGLE 札幌",
+      venueNote: "",
+      open: "13:00",
+      start: "13:30",
+      tickets: [
+        { label: "入場チケット", price: "¥4,500", suffix: "+1D", url: SHOP_URL },
+        { label: "応援付きチケット", price: "¥6,000", suffix: "+1D", support: true, url: SHOP_URL },
+      ],
+      note: "夜オフ会予定",
+    },
+    {
+      key: "tokyo",
+      no: "04",
+      date: "12.13",
+      day: "日",
+      city: "東京",
+      cityEn: "Tokyo",
+      venue: "東京音実劇場",
+      mapQuery: "東京音実劇場",
+      venueNote: "",
+      open: "18:30",
+      start: "19:00",
+      tickets: [
+        { label: "入場チケット", price: "¥5,000", suffix: "+1D", url: SHOP_URL },
+        { label: "応援付きチケット", price: "¥6,500", suffix: "+1D", support: true, url: SHOP_URL },
+      ],
+      note: "",
+    },
+  ],
+
+  /* 応援付きチケット only. */
+  perks: [
+    { no: "特典1", label: "先行入場" },
+    { no: "特典2", label: "写真付きメッセージカード" },
+  ],
+
+  notes: [
+    "各会場配信予定しています。配信チケットの販売は11月から販売スタートいたします。",
+  ],
+  highlight: "各入場チケット、手売り購入の場合 ¥500 オフ！",
+};
+
+/* ---------------------------------------------------------------
    ROOMLIVE — 自作音楽バラエティ番組
    --------------------------------------------------------------- */
 export const ROOMLIVE = {

@@ -49,6 +49,16 @@ const ROUTES = {
     description:
       "JUN 15th Anniversary「nonfiction」2026.10.2（金）東京 TOKIO TOKYO。Open 18:30 / Start 19:00。",
   },
+  tenkyu: {
+    title: "てんきゅーつあー2026 | JUN",
+    description:
+      "JUN「てんきゅーつあー2026」大阪 11.14 ／ 福岡 11.28 ／ 札幌 12.5 ／ 東京 12.13。両手いっぱいのてんきゅーをキミに。",
+    // Unlisted while the tour is being prepared: the page is live and
+    // shareable by URL, but nothing links to it and search engines are
+    // asked to skip it. Drop these two lines to announce it.
+    noindex: true,
+    sitemap: false,
+  },
   about: {
     title: "プロフィール | JUN",
     description:
