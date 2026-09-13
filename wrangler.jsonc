@@ -1,0 +1,23 @@
+{
+  // The site is a Worker serving static assets (not a Pages project).
+  // This name must match the existing Worker, otherwise deploying would
+  // create a second one and jun006.com would keep pointing at the old.
+  "name": "lively-resonance-8c25",
+  "compatibility_date": "2026-09-13",
+
+  "assets": {
+    "directory": "./dist",
+
+    // Real files win first, so /live/ serves dist/live/index.html with its
+    // own <title> and share card. Only genuinely unknown paths fall back to
+    // the app shell, which then renders the React 404 page.
+    "not_found_handling": "single-page-application"
+
+    // html_handling is left at its default, "auto-trailing-slash" — that is
+    // what produces the /live -> /live/ redirect the sitemap is built around.
+  },
+
+  "observability": {
+    "enabled": true
+  }
+}
